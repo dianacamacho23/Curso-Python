@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TuBlog - Home</title>
+</head>
+<body>
+    <h1>Welcome to TuBlog</h1>
+    <p>Discover and share your thoughts with the world.</p>
+    <ul>
+        <li><a href="{% url 'blogpost_list' %}">View Blog Posts</a></li>
+        <li><a href="{% url 'search_results' %}">Search for Posts</a></li>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'profile' username=user.username %}">My Profile</a></li>  <!-- Add a link to the user's profile -->
+        <li><a href="{% url 'blogpost_list' %}">My Blog Posts</a></li>  <!-- Add a link to the user's blog posts -->
+        <li><a href="{% url 'blogpost_create' %}">Create a Blog Post</a></li>
+        <li><a href="{% url 'category_list' %}">Categories</a></li>  <!-- Add a link to view categories -->
+        <li><a href="{% url 'tag_list' %}">Tags</a></li>  <!-- Add a link to view tags -->
+        <li><a href="{% url 'user_logout' %}">Logout</a></li>
+        
+
+        {% else %}
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        {% endif %}
+    </ul>
+    <!-- You can add more content or features here -->
+</body>
+</html>
+

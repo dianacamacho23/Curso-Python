@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}{{ blogpost.title }}{% endblock %}
+
+{% block content %}
+    <article>
+        <h1>{{ blogpost.title }}</h1>
+        <p>Published on {{ blogpost.created_at }}</p>
+        <p>Author: {{ blogpost.author }}</p>
+
+        <div class="content">
+            {{ blogpost.content | safe }}
+        </div>
+
+        <div class="categories">
+            <strong>Categories:</strong>
+            <ul>
+                {% for category in blogpost.categories.all %}
+                    <li>{{ category }}</li>
+                {% empty %}
+                    <li>No categories assigned.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="tags">
+            <strong>Tags:</strong>
+            <ul>
+                {% for tag in blogpost.tags.all %}
+                    <li>{{ tag }}</li>
+                {% empty %}
+                    <li>No tags assigned.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </article>
+
+    <a href="{% url 'blogpost_list' %}">Back to Blog Posts</a>
+</div>
+{% endblock %}
